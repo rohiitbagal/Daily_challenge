@@ -1,0 +1,16 @@
+ListNode* getKthNode(ListNode* head, int k) {
+    ListNode* current = head;
+    int count = 1;
+    
+    while (current != nullptr && count < k) {
+        current = current->next;
+        count++;
+    }
+    
+    // If current is nullptr, k is greater than the number of nodes in the list
+    if (current == nullptr) {
+        return nullptr;
+    }
+    
+    return current;
+}
