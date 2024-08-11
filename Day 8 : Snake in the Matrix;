@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int finalPositionOfSnake(int n, vector<string>& c) {
+        int col=0;int row=0;
+      for (const string& cmd : c){
+            if(cmd=="UP"){
+                row-=1;
+            }
+            if(cmd=="DOWN"){
+                row+=1;
+            }
+            if(cmd=="RIGHT"){
+                col+=1;
+            }
+            if(cmd=="LEFT"){
+                col-=1;
+            }
+        }
+        return (row*n)+col;
+    }
+};
