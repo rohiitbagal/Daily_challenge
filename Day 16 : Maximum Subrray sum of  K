@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> maxSubarrayOfLengthK(vector<int>& arr, int k) {
+    int n = arr.size();
+    if (n < k) {
+        cout << "The length of the array is smaller than k!" << endl;
+        return {};
+    }
+
+    int max_sum = 0;
+    int window_sum = 0;
+    int start_index = 0;
+
+    // Calculate the sum of the first window of length k
+    for (int i = 0; i < k; i++) {
+        window_sum += arr[i];
+    }
+
+    max_sum = window_sum;
+
+    // Slide the window from start to the end of the array
+    for (int i = k; i < n; i++) {
+        window_sum += arr[i] - arr[i - k]; // Slide the window
+        if (window_sum > max_sum) {
+            max_sum = window_sum;
+            start_index = i - k + 1;
+        }
+    }
+
+    // Create the result vector for the subarray with maximum sum
+    vector<int> result(arr.begin() + start_index, arr.begin() + start_index + k);
+    return result;
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    vector<int> result = maxSubarrayOfLengthK(arr, k);
+
+    if (!result.empty()) {
+        cout << "Maximum subarray of length " << k << " is: ";
+        for (int x : result) {
+            cout << x << " ";
+        }
+    }
+
+    return 0;
+}
