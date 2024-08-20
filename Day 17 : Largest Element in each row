@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <climits> // For INT_MIN
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+
+    std::vector<std::vector<int>> ans(n, std::vector<int>(m));
+    std::vector<int> result;
+
+    // Input the matrix elements
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            std::cin >> ans[i][j];
+        }
+    }
+
+    // Find the maximum element in each row and store it in the result vector
+    for (int i = 0; i < n; ++i) {
+        int maxi = ans[i][0]; // Assume the first element in the row is the largest
+        for (int j = 1; j < m; ++j) { // Iterate over the rest of the row
+            if (ans[i][j] > maxi) {
+                maxi = ans[i][j]; // Update the maximum value for the row
+            }
+        }
+        result.push_back(maxi); // Store the maximum of the current row in the result vector
+    }
+
+    // Output the result vector
+    for (int i = 0; i < result.size(); ++i) {
+        std::cout << result[i] << " ";
+    }
+
+    return 0;
+}
