@@ -1,0 +1,39 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+vector<int> resultsum(vector<vector<int>>ans){
+    vector<int>result; 
+    int n=ans.size();
+    int m=ans[0].size();
+    for(int i=0;i<m;i++){
+        int maxi=ans[0][i];
+        for(int j=0;j<n;j++){
+            int r=ans[j][i];
+            if(r>maxi){
+               maxi=r;
+            }
+        }
+     result.push_back(maxi);
+    }
+  
+return result;
+}
+
+int main() {
+int n;
+int m;
+cin>>n;
+cin>>m;
+vector<vector<int>>ans(n,vector<int>(m));
+for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+          cin>>ans[i][j];
+    }
+}
+vector<int> result=resultsum(ans);
+for(int i=0;i<result.size();i++){
+    cout<<result[i];
+}
+    return 0;
+}
