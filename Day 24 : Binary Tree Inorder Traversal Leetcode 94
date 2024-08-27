@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> result;
+        inorderHelper(root, result);
+        return result;
+    }
+    
+private:
+    void inorderHelper(TreeNode* node, vector<int>& result) {
+        if (node == nullptr) {
+            return;
+        }
+        
+        inorderHelper(node->left, result); // Visit left subtree
+        result.push_back(node->val);       // Visit node itself
+        inorderHelper(node->right, result); // Visit right subtree
+    }
+}
